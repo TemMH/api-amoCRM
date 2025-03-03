@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeadRequest;
 
 use App\Services\LeadService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\RedirectResponse;
 
 class FormController extends Controller
 {
@@ -16,7 +19,7 @@ class FormController extends Controller
         $this->leadService = $leadService;
     }
 
-    public function store(StoreLeadRequest $request)
+    public function store(StoreLeadRequest $request): RedirectResponse
     {
         try {
             $validatedData = $request->validated();
@@ -24,7 +27,7 @@ class FormController extends Controller
 
 
 
-            return back()->with('success', 'Лид успешно добавлен в AmoCRM!');
+            return redirect()->back()->with('success', 'Сделка добавлена в AmoCRM');
         } catch (\Exception $e) {
             Log::error('Ошибка в контроллере при создании сделки-> ' . $e->getMessage());
 

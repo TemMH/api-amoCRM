@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use AmoCRM\Client\AmoCRMApiClient;
 use AmoCRM\Collections\CustomFieldsValuesCollection;
 use AmoCRM\Exceptions\AmoCRMApiException;
@@ -16,7 +17,6 @@ use AmoCRM\Models\CustomFieldsValues\ValueModels\MultitextCustomFieldValueModel;
 use AmoCRM\Models\LeadModel;
 
 
-
 class LeadService
 {
 
@@ -28,7 +28,7 @@ class LeadService
     }
 
 
-    public function createLead(array $data)
+    public function createLead(array $data): ?LeadModel
     {
 
         try {
@@ -45,7 +45,7 @@ class LeadService
         }
     }
 
-    private function addContact(string $name, string $phone, string $email)
+    private function addContact(string $name, string $phone, string $email): ?ContactModel
     {
         try {
             $contact = new ContactModel();
@@ -79,11 +79,11 @@ class LeadService
             return $this->apiClient->contacts()->addOne($contact);
         } catch (AmoCRMApiException $e) {
 
-            throw new \Exception('Ошибка при добавлении контакта' . $e->getMessage());
+            throw new \Exception('Ошибка при добавлении контакта: ' . $e->getMessage());
         }
     }
 
-    private function addLead($price, $visit_duration, $contact)
+    private function addLead(int $price, int $visit_duration, ?ContactModel $contact): LeadModel
     {
         try {
 
@@ -116,7 +116,7 @@ class LeadService
 
             return $this->apiClient->leads()->addOne($lead);
         } catch (AmoCRMApiException $e) {
-            throw new \Exception('Ошибка при добавлении сделки' . $e->getMessage());
+            throw new \Exception('Ошибка при добавлении сделки: ' . $e->getMessage());
         }
     }
 }

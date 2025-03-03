@@ -25,7 +25,7 @@ class StoreLeadRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|integer|min:0',
             'visit_duration' => 'nullable|integer|min:0'
         ];
     }
