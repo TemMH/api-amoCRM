@@ -32,10 +32,11 @@ return [
     ],
 
     'amocrm' => [
-    'client_id' => env('CLIENT_ID'),
-    'client_secret' => env('CLIENT_SECRET'),
-    'redirect_uri' => env('CLIENT_REDIRECT_URI'),
-    'domain' => env('AMOCRM_DOMAIN'),
+        'client_id' => env('AMO_CLIENT_ID'),
+        'client_secret' => env('AMO_CLIENT_SECRET'),
+        'redirect_uri' => env('AMO_CLIENT_REDIRECT_URI'),
+        'long_token' => env('AMO_LONG_TOKEN'),
+        'client_domain' => env('AMO_CLIENT_DOMAIN'),
     ],
 
 

@@ -14,8 +14,8 @@ class AmoCrmServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(AmoCRMApiClient::class, function () {
-            $longLivedAccessToken = new LongLivedAccessToken(env('AMO_LONG_TOKEN'));
-            return (new AmoCRMApiClient())->setAccessToken($longLivedAccessToken)->setAccountBaseDomain(env('AMO_CLIENT_DOMAIN'));
+            $longLivedAccessToken = new LongLivedAccessToken(config('services.amocrm.long_token'));
+            return (new AmoCRMApiClient())->setAccessToken($longLivedAccessToken)->setAccountBaseDomain(config('services.amocrm.client_domain'));
         });
     }
 
