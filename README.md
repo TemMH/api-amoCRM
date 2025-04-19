@@ -8,13 +8,6 @@
 ## Начало работы 
 
 ```
-cd src
+coming soon
 ```
 
-```
-composer i
-```
-
-```
-docker-compose up -d --build
-```
